@@ -35,12 +35,17 @@ while True:
     for i in resultado:
         print ("%s %s %s %s" % (i[0],i[1],i[2],i[3]))
 
-    
-    nom = input("   Nombre: ")
-    ape = input(" Apellido: ")
-    ed  = input("     Edad: ")
-    dom = input("Domicilio: ")
-    co  = input("   Correo: ")
+    if resultado:
+        # es una modificacion
+        nom = input("   Nombre: ")
+        ape = input(" Apellido: ")
+        ed  = input("     Edad: ")
+        dom = input("Domicilio: ")
+        co  = input("   Correo: ")
+    else:
+        # no existe, es un  Alta.
+        
+        
     sn  = input('Confirma los datos (S ó N) ?')
     if sn=='S' or sn=='s':
         cur.execute("INSERT INTO personas(nombre, apellido, edad, dni, domicilio, e_mail) VALUES (?,?,?,?,?,?)", (nom, ape, ed, dni, dom, co) )
