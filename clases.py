@@ -31,18 +31,24 @@ class Cliente(Persona):
         self.sucursal = sucursal
         self.id_cliente = id_cliente
 
-    def Cuenta(Cliente):
-        ''' Posee los atributos de cliente, añade número, saldo y la capacidad de agregar y extraer dinero.'''
-        def __init__(self, nCuenta, saldo, **kw):
-            super().__init__(fechaAlta=fechaAlta, fechaBaja=fechaBaja, sucursal=sucursal, id_cliente=id_cliente)
-            self.nCuenta = nCuenta
-            self.saldo = saldo
+    def altaCliente(self):
+        pass
 
-        def agregarDinero(self):
-            pass
+    def bajaCliente(self):
+        pass
 
-        def extraerDinero(self):
-            pass
+class Cuenta(Cliente):
+    ''' Posee los atributos de cliente, añade número, saldo y la capacidad de agregar y extraer dinero.'''
+    def __init__(self, nCuenta, saldo, **kw):
+        super().__init__(fechaAlta=fechaAlta, fechaBaja=fechaBaja, sucursal=sucursal, id_cliente=id_cliente)
+        self.nCuenta = nCuenta
+        self.saldo = saldo
+
+    def agregarDinero(self):
+        pass
+
+    def extraerDinero(self):
+        pass
 
 class Cajero():
     """Aquí se ejecuta la extracción. Tiene atributos:
