@@ -1,24 +1,19 @@
-import sqlite3
-import time 
-import os
 
 
-while True:
-    line = input("Cargar datos de CLIENTES. Pulse 'S' para salir")
-    if line == "S" or line == "s":
-        break
+def  alta_cli():
+    while True:
+        line = input("CLIENTES. A:Alta, M:Modificacion, S:Salir")
+        if line == "S" or line == "s":
+            break
 
-  
-    # es una modificacion
-    nom = input(" : ")
-    ape = input(" : ")
-    ed  = input(" : ")
-    dom = input(" : ")
-            
-    sn  = input('Confirma los datos (S ó N) ?')
-    
+      
+        # es una modificacion
+        dni = input("           DNI: ")
+        nom = input(" Fecha de alta: ")
+        ape = input(" Fecha de baja: ")
+        ed  = input("      Sucursal: ")
                 
-
-con.commit()
-con.close()
-                      
+        sn  = input('Confirma los datos (S ó N) ?')
+        
+                    
+              

@@ -1,20 +1,33 @@
-import time 
-import os
 
+def alta_cta():
+    while True:
+        line = input("CUENTAS. A:Alta, M:Modificacion, S:Salir")
+        if line == "S" or line == "s":
+            break
 
+      
+        # es una modificacion
+        nom = input(" Id Cliente: ")
+        print('Su nro de cuenta es .....')                
+        sn  = input('Confirma los datos (S ó N) ?')
+        
+                    
+def alta_oper():
+    while True:
+        line = input("OPERACIONES. 1:Deposito, 2:Extraccion, 3:Consulta saldo, S:Salir")
+        if line == "S" or line == "s":
+            break
 
-while True:
-    line = input("Cargar datos de CUENTAS. Pulse 'S' para salir")
-    if line == "S" or line == "s":
-        break
-
-  
-    # es una modificacion
-    nom = input(" : ")
-    ape = input(" : ")
-    ed  = input(" : ")
-    dom = input(" : ")
+        if int(line)==1:
+            print('*** Deposito ***')
+        if int(line)==2:
+            print('*** Extraccion ***')
+        if int(line)==3:
+            print('*** Saldo ***')
             
-    sn  = input('Confirma los datos (S ó N) ?')
-    
-                
+        cli = input(" Id Cliente: ")
+        cta = input("  Id Cuenta: ")
+        mto = input("    Importe: ")
+        
+              
+        sn  = input('Confirma los datos (S ó N) ?')

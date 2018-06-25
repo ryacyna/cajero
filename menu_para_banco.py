@@ -1,4 +1,7 @@
 import os
+from clientes import *
+from cuentas import *
+from Persona import *
 
 def menu():
     """
@@ -6,9 +9,10 @@ def menu():
     """
     os.system('clear') 
     print ("Selecciona una opción")
-    print ("\t1 - Dar de Alta un cliente")
-    print ("\t2 - Modificar datos de un cliente")
-    print ("\t3 - Dar de baja un cliente")
+    print ("\t1 - Personas")
+    print ("\t2 - Clientes")
+    print ("\t3 - Cuentas")
+    print ("\t4 - Movimientos")   
     print ("\t9 - salir")
 
 
@@ -17,17 +21,18 @@ while True:
     menu()
 
     # solicita una opción al usuario
-    opcionMenu = input("inserta un numero valor >> ")
+    opcionMenu = int(input("inserta un numero valor >> "))
 
     if opcionMenu==1:
-        print ("Has pulsado la opción 1")
-        idPersona = input("Inserta el DNI de la persona >> ")
-        elif opcionMenu==2:
-        print ("Has pulsado la opción 2")
-        idPersona = input("Inserta el ID del cliente que desea modificar >> ")
+        alta_per()
+    elif opcionMenu==2:
+        alta_cli()
     elif opcionMenu==3:
-        print ("Has pulsado la opción 3")
-        idPersona = input("Inserta el ID del cliente a dar de baja >> ")
+        alta_cta()
+    elif opcionMenu==4:
+        alta_oper()
+         
+         
     elif opcionMenu==9:
         break
     else:
