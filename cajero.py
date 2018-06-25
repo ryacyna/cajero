@@ -24,25 +24,23 @@ while True:
     #preguntar si es A o M, para ver que hace
     dni = input("      DNI: ")
 
-    _t=(dni,)
-    cur.execute("select nombre, apellido, domicilio, e_mail from personas where dni=?", _t )
-  
-    resultado = cur.fetchone()
+    #_t=(dni,)
+    #cur.execute("select nombre, apellido, domicilio, e_mail from personas where dni=?", _t )
+    #  resultado = cur.fetchone()
     #if resultado is None:
     # o   data=cursor.fetchall()
     # if len(data)==0:
         
-    for i in resultado:
-        print ("%s %s %s %s" % (i[0],i[1],i[2],i[3]))
+    #for i in resultado:
+    #    print ("%s %s %s %s" % (i[0],i[1],i[2],i[3]))
 
-    if resultado:
         # es una modificacion
-        nom = input("   Nombre: ")
-        ape = input(" Apellido: ")
-        ed  = input("     Edad: ")
-        dom = input("Domicilio: ")
-        co  = input("   Correo: ")
-    else:
+    nom = input("   Nombre: ")
+    ape = input(" Apellido: ")
+    ed  = input("     Edad: ")
+    dom = input("Domicilio: ")
+    co  = input("   Correo: ")
+        #else:
         # no existe, es un  Alta.
         
         
