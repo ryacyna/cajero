@@ -14,15 +14,36 @@ cur.execute("CREATE TABLE IF NOT EXISTS cuentas  (idcuenta  INTEGER PRIMARY KEY,
 
 def crearPersona(nom, ape, ed, dni, dom, co):
     cur.execute("INSERT INTO personas(nombre, apellido, edad, dni, domicilio, e_mail) VALUES (?,?,?,?,?,?)", (nom, ape, ed, dni, dom, co))
+
 def obtenerIdPersona(dni):
-    id_pers = cur.execute("select id_persona from personas where dni=?", dni)
+    id_pers = cur.execute("SELECT id_persona from personas where dni=?", (dni))
     return id_pers
 
 def crearCliente(idper, alta, suc):
     cur.execute("INSERT INTO clientes(idpersona, fec_alta, sucursal) VALUES (?,?,?)", (idper, alta, suc))
-def obtenerIdCliente(id_pers):
-    id_cli = cur.execute("select id_cliente from clientes where idpersona=?", id_pers)
+
+def obtenerIdCliente(id_persona):
+    id_cli = cur.execute("SELECT idcliente from clientes where idpersona=?", (id_persona))
     return id_cli
+
+def bajaCliente(baja, cliente):
+    cur.execute("UPDATE clientes set fec_baja=? where idcliente=?", (baja, cliente)
+    con.commit()
+    #debe insertar fecha de baja en el campo fec_baja del registro de este cliente
+
+def crearCuenta(cliente):
+    cur.execute("INSERT INTO cuentas(idcliente, saldo) VALUES (?,?)", (cliente, 00,00))
+
+def obtenerIdCuenta(cliente):
+    id_cue = cur.execute("SELECT idcuenta from cuentas where idcliente=?", (cliente))
+    return id_cue
+
+def obtenerSaldo(cuenta):
+    saldo = cur.execute("SELECT saldo from cuentas where idcuenta=?", (cuenta))
+    return saldo
+
+def depositar(cuenta, monto):
+    cur.execute("UPDATE cuentas set saldo = monto where idcuenta=?", (cuenta))
 
 #Cerramos el archivo y la conexion a la bd
 con.commit()

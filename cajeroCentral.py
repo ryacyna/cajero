@@ -1,14 +1,7 @@
 from clases import *
+from menu_para_banco import menu
 import os
 
-
-def menu():
-    """
-    Función que limpia la pantalla y muestra nuevamente el menu
-    """
-    os.system('clear')
-    opcionMenu = int(input("Selecciona una opción\n\t1 - Personas\n\t2 - Clientes\n\t3 - Cuentas\n\t4 - Movimientos\n\t9 - Salir\n\t"))
-    return opcionMenu
 
 while True:
     # Muestra el menu y solicita una opción al usuario
