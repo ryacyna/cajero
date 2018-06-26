@@ -12,5 +12,18 @@ cur.execute("CREATE TABLE IF NOT EXISTS personas (idpersona  INTEGER PRIMARY KEY
 cur.execute("CREATE TABLE IF NOT EXISTS clientes (idcliente  INTEGER PRIMARY KEY, idpersona int, fec_alta text, fec_baja text, sucursal int )")
 cur.execute("CREATE TABLE IF NOT EXISTS cuentas  (idcuenta  INTEGER PRIMARY KEY, idcliente int, saldo float )")
 
-def crearRegistro(nom, ape, ed, dni, dom, co):
+def crearPersona(nom, ape, ed, dni, dom, co):
     cur.execute("INSERT INTO personas(nombre, apellido, edad, dni, domicilio, e_mail) VALUES (?,?,?,?,?,?)", (nom, ape, ed, dni, dom, co))
+def obtenerIdPersona(dni):
+    id_pers = cur.execute("select id_persona from personas where dni=?", dni)
+    return id_pers
+
+def crearCliente(idper, alta, suc):
+    cur.execute("INSERT INTO clientes(idpersona, fec_alta, sucursal) VALUES (?,?,?)", (idper, alta, suc))
+def obtenerIdCliente(id_pers):
+    id_cli = cur.execute("select id_cliente from clientes where idpersona=?", id_pers)
+    return id_cli
+
+#Cerramos el archivo y la conexion a la bd
+con.commit()
+con.close()

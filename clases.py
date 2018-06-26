@@ -1,3 +1,5 @@
+import time
+import os
 from baseDatos import *
 
 class Persona():
@@ -26,9 +28,8 @@ class Persona():
 
         sn  = input('Confirma los datos (S ó N) ? \n').upper()
         if sn == 'S':
-            crearRegistro(self.nombre, self.apellido, self.edad, self.dni, self.domicilio, self.email)
-
-
+            crearPersona(self.nombre, self.apellido, self.edad, self.dni, self.domicilio, self.email)
+            self.id_persona = obtenerIdPersona(self.dni)
 
     def modificarDatos(self):
         pass
@@ -37,18 +38,28 @@ class Persona():
 class Cliente(Persona):
     """ tiene los datos de persona, añade fecha de alta, fecha de baja (si existe) y sucursal.
     Funcionalidad: darse de alta y de baja"""
-    def __init__(self, fechaAlta, fechaBaja, sucursal, id_cliente, **kw):
-        super().__init__(nombre=nombre, apellido=apellido, edad=edad, dni=ndi, domicilio=domicilio, email=email, id_persona=id_persona)
-        self.fechaAlta = fechaAlta
-        self.fechaBaja = fechaBaja
-        self.sucursal = sucursal
-        self.id_cliente = id_cliente
+    def __init__(self,**kw):
+        super().__init__()
+        self.fechaAlta = None
+        self.fechaBaja = None
+        self.sucursal = None
+        self.id_cliente = None
 
     def altaCliente(self):
-        pass
+
+        self.fechaAlta = input(" Fecha de alta: ")
+        self.sucursal  = input(" Sucursal: ")
+
+        sn  = input('Confirma los datos (S ó N) ? \n').upper()
+        if sn == 'S':
+            crearCliente(self.id_persona, self.fechaAlta, self.sucursal)
+            self.id_cliente = obtenerIdCliente(self.id_persona)
+
 
     def bajaCliente(self):
-        pass
+
+        self.fechaBaja = input(" Fecha de baja: ")
+
 
 class Cuenta(Cliente):
     ''' Posee los atributos de cliente, añade número, saldo y la capacidad de agregar y extraer dinero.'''
@@ -83,7 +94,6 @@ class Cajero():
     def atenderCliente(self):
         pass
 
-'''class ColaClientes(object):
-    def __init__(self, arg):
-        superColaClientes, self).__init__()
+class ColaClientes(self):
+    def __init__(self):
         self.arg = arg'''
