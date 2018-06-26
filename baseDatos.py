@@ -22,17 +22,16 @@ def crearPersona(nom, ape, ed, dni, dom, co):
 def obtenerIdPersona(dni):
     con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
-    id_pers = cur.execute("SELECT idpersona from personas where dni=?", (dni,))
+    for i in cur.execute("SELECT idpersona from personas where dni=?", (dni,)):
+        id_persona = i[0]
     con.close()
-    return id_pers
+    return id_persona
 
-def imprimiRegistro():
+def imprimirRegistros():
     con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
-    cur.execute("SELECT * from personas")
-    for registro in cur:
-        for campo in registro:
-            print (campo, '\n')
+    for registro in cur.execute("SELECT * from personas"): #=?", (tabla,)):
+        print (registro)
     con.close()
 
 
@@ -62,16 +61,17 @@ def bajaCliente(baja, cliente):
 def crearCuenta(cliente):
     con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
-    cur.execute("INSERT INTO cuentas(idcliente, saldo) VALUES (?,?)", (cliente, 00,00))
+    cur.execute("INSERT INTO cuentas(idcliente, saldo) VALUES (?,?)", (cliente, 00))
     con.commit()
     con.close()
 
-def obtenerIdCuenta(cliente):
+def obtenerDatoCuenta(campo, cliente):
     con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
-    id_cue = cur.execute("SELECT idcuenta from cuentas where idcliente=?", (cliente,))
+    for i in cur.execute("SELECT campo=? from cuentas where idcliente=?", (campo, cliente)):
+        dato = i[0]
     con.close()
-    return id_cue
+    return dato
 
 def obtenerSaldo(cuenta):
     con = sqlite3.connect('Cajero.db')
@@ -89,6 +89,5 @@ def actualizarSaldo(cuenta, monto):
 
 #Cerramos el archivo y la conexion a la bd
 
-imprimiRegistro()
 con.commit()
 con.close()

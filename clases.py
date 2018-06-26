@@ -54,12 +54,15 @@ class Cliente(Persona):
         sn  = input('Confirma los datos (S ócon N) ? \n').upper()
         if sn == 'S':
             crearCliente(self.id_persona, self.fechaAlta, self.sucursal)
-            self.id_cliente = obtenerIdCliente(self.id_persona)
+            self.id_cliente = obtenerDatoCuenta(idcliente, self.id_persona)
 
 
     def bajaCliente(self):
         self.fechaBaja = time.asctime()
         bajaCliente(self.fechaBaja, self.id_cliente)
+
+    def cargarCliente(self):
+
 
 
 class Cuenta(Cliente):
@@ -106,12 +109,15 @@ class Cajero():
 
     def atenderCliente(self):
         siguiente = self.colaClientes.popleft()
+        operaciones = {'Deposito': 1, 'Extracción': 2, 'Consulta': 3}
+        if siguiente.operacion in operaciones:
+
 
 class ColaClientes():
-    def __init__(self, cliente, cuenta, operacion, monto):
-        self.idcliente = None
-        self.idcuenta = None
+    def __init__(self):
+        self.idcliente = obtenerIdCliente(idpers)
+        self.idcuenta = obtenerIdCuenta(self.idcliente)
         self.operacion = None
         self.monto = None
-        self.horaIngreso = None
+        self.horaIngreso = time.asctime()
         self.estado = 'En proceso'
