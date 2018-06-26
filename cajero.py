@@ -1,11 +1,11 @@
 import sqlite3
-import time
+import time 
 import os
 
 con = sqlite3.connect('Cajero.db')
 
 cur = con.cursor()
-
+ 
 #Creamos la tabla si no existe
 #The function can return any of the types supported by SQLite: unicode, str, int, long, float, buffer and None.
 cur.execute("CREATE TABLE IF NOT EXISTS personas (idpersona  INTEGER PRIMARY KEY, nombre text, apellido text, edad int, dni int, domicilio text, e_mail text)")
@@ -17,41 +17,39 @@ buffer = ""
 
 
 while True:
-    line = input("Altas: A, Modificaciones:M, S:Salir") #aca se puede hacer uper() para evitar tener q comprobar si el usuariopuso minuscula o mayuscula
+    line = input("Altas: A, Modificaciones:M, S:Salir")
     if line == "S" or line == "s":
         break
 
     #preguntar si es A o M, para ver que hace
     dni = input("      DNI: ")
 
-    _t=(dni,)
-    cur.execute("select nombre, apellido, domicilio, e_mail from personas where dni=?", _t )
-
-    resultado = cur.fetchone()
+    #_t=(dni,)
+    #cur.execute("select nombre, apellido, domicilio, e_mail from personas where dni=?", _t )
+    #  resultado = cur.fetchone()
     #if resultado is None:
     # o   data=cursor.fetchall()
     # if len(data)==0:
+        
+    #for i in resultado:
+    #    print ("%s %s %s %s" % (i[0],i[1],i[2],i[3]))
 
-    for i in resultado:
-        print ("%s %s %s %s" % (i[0],i[1],i[2],i[3]))
-
-    if resultado:
         # es una modificacion
-        nom = input("   Nombre: ")
-        ape = input(" Apellido: ")
-        ed  = input("     Edad: ")
-        dom = input("Domicilio: ")
-        co  = input("   Correo: ")
-    else:
+    nom = input("   Nombre: ")
+    ape = input(" Apellido: ")
+    ed  = input("     Edad: ")
+    dom = input("Domicilio: ")
+    co  = input("   Correo: ")
+        #else:
         # no existe, es un  Alta.
-
-
+        
+        
     sn  = input('Confirma los datos (S ó N) ?')
     if sn=='S' or sn=='s':
         cur.execute("INSERT INTO personas(nombre, apellido, edad, dni, domicilio, e_mail) VALUES (?,?,?,?,?,?)", (nom, ape, ed, dni, dom, co) )
-
-
-
+    
+    
+                
 
 
 #cur.execute("SELECT * FROM personas")
@@ -59,7 +57,7 @@ while True:
 #for i in resultado:
 #    print ("%s %s %s %s" % (i[0],i[1],i[2],i[3]))
 #for row in cur.execute('SELECT * FROM personas'):
-#    print(row)
+#    print(row)    
 #Llenamos la BD con los datos del CSV
 #for row in reader:
 #    cur.execute("INSERT INTO posiciones VALUES (?, ?, ?, ?)", (row[0], row[1], row[2], row[3]))
@@ -68,7 +66,8 @@ while True:
 #for row in cur.execute('SELECT * FROM posiciones'):
 #    print(row)
 
-
+ 
 #Cerramos el archivo y la conexion a la bd
 con.commit()
 con.close()
+                      

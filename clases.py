@@ -1,4 +1,4 @@
-
+from baseDatos import *
 
 class Persona():
     """ Posee todos sus datos personales (nombre, apellido, edad, dni, domicilio, etc).
@@ -15,7 +15,20 @@ class Persona():
         self.id_persona = None
 
     def cargarDatos(self):
-        pass
+        print('Alta Nueva Persona')
+
+        self.dni = input("      DNI: ")
+        self.nombre = input("   Nombre: ")
+        self.apellido = input(" Apellido: ")
+        self.edad  = input("     Edad: ")
+        self.domicilio = input("Domicilio: ")
+        self.email  = input("   Correo: ")
+
+        sn  = input('Confirma los datos (S ó N) ? \n').upper()
+        if sn == 'S':
+            crearRegistro(self.nombre, self.apellido, self.edad, self.dni, self.domicilio, self.email)
+
+
 
     def modificarDatos(self):
         pass
@@ -70,7 +83,7 @@ class Cajero():
     def atenderCliente(self):
         pass
 
-class ColaClientes(object):
+'''class ColaClientes(object):
     def __init__(self, arg):
         superColaClientes, self).__init__()
-        self.arg = arg
+        self.arg = arg'''
