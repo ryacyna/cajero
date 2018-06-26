@@ -42,7 +42,7 @@ def obtenerSaldo(cuenta):
     saldo = cur.execute("SELECT saldo from cuentas where idcuenta=?", (cuenta))
     return saldo
 
-def depositar(cuenta, monto):
+def actualizarSaldo(cuenta, monto):
     cur.execute("UPDATE cuentas set saldo = monto where idcuenta=?", (cuenta))
 
 #Cerramos el archivo y la conexion a la bd

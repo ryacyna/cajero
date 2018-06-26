@@ -75,14 +75,21 @@ class Cuenta(Cliente):
 
 
     def agregarDinero(self, monto):
-        self.saldo = obtenerSaldo(cuenta) + monto
-        depositar(self.nCuenta, self.saldo)
+        self.saldo = obtenerSaldo(self.nCuenta) + monto
+        actualizarSaldo(self.nCuenta, self.saldo)
 
-    def extraerDinero(self):
-        pass
+    def extraerDinero(self, monto):
+        self.saldo = obtenerSaldo(self.nCuenta)
+        if self.saldo >= monto:
+            self.saldo -= monto
+            actualizarSaldo(self.nCuenta, self.saldo)
+            return 'Saldo {}'.format(self.saldo)
+        else:
+            return 'Saldo insuficiente. Saldo actual {}'.format(self.saldo)
 
     def consultarSaldo(self):
-        pass
+        self.saldo = obtenerSaldo(self.nCuenta)
+        return 'Saldo actual {}'.format(self.saldo)
 
     def consultarMovimientos(self):
         pass
