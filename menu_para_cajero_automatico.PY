@@ -1,36 +1,47 @@
 import os
- 
+
 def menu():
-	"""
-	Función que limpia la pantalla y muestra nuevamente el menu
-	"""
-	os.system('clear') # NOTA para windows tienes que cambiar clear por cls
-	print ("Selecciona la opción deseada")
+	print ("Seleccione la opción deseada")
 	print ("\t1 - Depósito")
 	print ("\t2 - Extracción")
 	print ("\t3 - Consulta")
-	print ("\t9 - salir")
- 
- 
+	print ("\t4 - Salir")
+	
+
 while True:
 	# Muestra el menu
 	menu()
- 
-	# solicita una opción al usuario
-	opcionMenu = input("Inserta el numero de la opcion deseada >> ")
- 
+	
+	opcionMenu = int(input("Inserta el numero de la opcion dentroseada >> "))
+	
+	while opcionMenu<1 or opcionMenu>4:
+		print ("Ingrese un numero del 1 al 4")
+		opcionMenu = int(input("Inserta el numero de la opcion deseada >> "))
+	
 	if opcionMenu==1:
 		print ("Has pulsado la opción 1")
-		montodepositado = input("Inserta el monto que va a depositar >> ")
-                if montodepositado > 0:
-                    print ("Muchas gracias, en 24hs se efectuará el depósito")
-        elif opcionMenu==2:
-            print ("Has pulsado la opción 2")
-		idPersona = input("Inserta el ID del cliente que desea modificar >> ")
-        elif opcionMenu==3:
-            print ("Has pulsado la opción 3")
-            idPersona = input("Inserta el ID del cliente a dar de baja >> ")
-        elif opcionMenu==9:
-            break
-        else:
-            input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")
+		montoDepositado = int(input("Inserta el monto que va a depositar >> "))
+		while montoDepositado <= 0:
+			montoDepositado = int(input("Por favor, ingrese un monto mayor a $0>> "))
+		else:
+			print ("Muchas gracias, en 24hs se efectuará el depósito")
+			
+	elif opcionMenu==2:
+		print ("Has pulsado la opción 2")
+		montoExtraccion = int(input("Inserta el monto de dinero que desea extraer>> "))
+		#if montoExtraccion>saldoCliente:
+		while montoExtraccion <= 0: 
+			montoExtraccion = int(input("Por favor, ingrese un monto mayor a $0>> "))
+		else:
+			print ("Retire su dinero por favor, muchas gracias")
+	
+	elif opcionMenu==3:
+		print ("Has pulsado la opción 3")
+		idPersona = input("Aquí puede ver la información de su cuenta >> ")
+		##Acá se haría una consulta a la base de datos para mostrar los datos del cliente, los movimientos de la cuenta y su saldo
+		
+	elif opcionMenu==4:
+		break
+	
+	else:
+		input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")
