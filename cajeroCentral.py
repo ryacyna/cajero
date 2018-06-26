@@ -1,17 +1,18 @@
 from clases import *
 from menu_para_banco import menu
 import os
-
+from baseDatos import imprimiRegistro
 
 while True:
     # Muestra el menu y solicita una opción al usuario
     opcionMenu = menu()
 
     if opcionMenu==1:
-        opcionPers = int(input("Selecciona una opción\n\t1 - Alta Nueva Persona\n\t2 - modificar Datos personales"))
+        opcionPers = int(input("Selecciona una opción\n\t1 - Alta Nueva Persona\n\t2 - modificar Datos personales\n\t"))
         if opcionPers == 1:
             persona = Persona()
             persona.cargarDatos()
+            imprimiRegistro()
         elif opcionPers == 2:
             pass
         else:

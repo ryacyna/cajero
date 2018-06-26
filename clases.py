@@ -1,6 +1,7 @@
 import time
 import os
 from baseDatos import *
+from collections import deque
 
 class Persona():
     """ Posee todos sus datos personales (nombre, apellido, edad, dni, domicilio, etc).
@@ -15,7 +16,7 @@ class Persona():
         self.domicilio = None
         self.email = None
         self.id_persona = None
-idcliente
+
     def cargarDatos(self):
         print('Alta Nueva Persona')
 
@@ -100,13 +101,17 @@ class Cajero():
     """Aquí se ejecuta la extracción. Tiene atributos:
     1) cola de clientes, posee todos los clientes que quieren realizar alguna operación.
     2) va atendiendo a cada cliente y ejecutando lo que deseen hacer."""
-    def __init__(self, **kw):
-        super().__init__(**kw)
-        self.colaCliente = []
+    def __init__(self):
+        self.colaClientes = deque([])
 
     def atenderCliente(self):
-        pass
+        siguiente = self.colaClientes.popleft()
 
-class ColaClientes(self):
-    def __init__(self):
-        self.arg = arg'''
+class ColaClientes():
+    def __init__(self, cliente, cuenta, operacion, monto):
+        self.idcliente = None
+        self.idcuenta = None
+        self.operacion = None
+        self.monto = None
+        self.horaIngreso = None
+        self.estado = 'En proceso'
