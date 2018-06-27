@@ -36,14 +36,14 @@ class Persona():
         pass
 
     def cargarPersona(self, dni):
-        datos = obtenerCuenta(dni)
-        self.dni =
-        self.nombre = input("   Nombre: ")
-        self.apellido = input(" Apellido: ")
-        self.edad  = input("     Edad: ")
-        self.domicilio = input("Domicilio: ")
-        self.email  = input("   Correo: ")
-
+        datos = obtenerPersona(dni)
+        self.dni = dni
+        self.nombre = datos[1]
+        self.apellido = datos[2]
+        self.edad  = datos[3]
+        self.domicilio = [5]
+        self.email  = datos[6]
+        self.id_persona = datos[0]
 
 class Cliente(Persona):
     """ tiene los datos de persona, añade fecha de alta, fecha de baja (si existe) y sucursal.
@@ -128,8 +128,10 @@ class Cajero():
 
 class ColaClientes():
     def __init__(self):
+        self.dni = None
         self.idcliente = obtenerIdCliente(idpers)
         self.idcuenta = obtenerIdCuenta(self.idcliente)
+        self.cliente = obtenerCuenta()
         self.operacion = None
         self.monto = None
         self.horaIngreso = time.asctime()

@@ -18,10 +18,11 @@ def menu():
 
 
 while True:
-    dni = int(input('BIENVENIDO. \n INGRESE DNI'))
-    idpers = obtenerIdPersona(dni)
-	cuenta = Cuenta()
-    proximo = colaClientes()
+	proximo = colaClientes()
+    proximo.dni = int(input('BIENVENIDO. \n INGRESE DNI'))
+    idpers = obtenerIdPersona(proximo.dni)
+	proximo.cliente = cargarCuenta()
+
 
 	# Muestra el menu
 	opcionMenu = menu()
@@ -32,7 +33,13 @@ while True:
 
 	if opcionMenu==1:
 		print ("Has pulsado la opción 1")
-		montoDepositado = int(input("Inserta el monto que va a depositar >> "))
+		montoDepositado = int(input("Inser")
+	print ("\t2 - Extracción")
+	print ("\t3 - Consulta")
+	print ("\t4 - Salir \n")
+	opcionMenu = int(input("Selecciona una opción\n\t1 - Personas\n\t2 - Clientes\n\t3 - Cuentas\n\t4 - Movimientos\n\t9 - Salir\n\t"))
+	return opcionMenu
+ta el monto que va a depositar >> "))
 		while montoDepositado <= 0:
 			montoDepositado = int(input("Por favor, ingrese un monto mayor a $0>> "))
 		else:
