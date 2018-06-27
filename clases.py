@@ -35,6 +35,15 @@ class Persona():
     def modificarDatos(self):
         pass
 
+    def cargarPersona(self, dni):
+        datos = obtenerCuenta(dni)
+        self.dni =
+        self.nombre = input("   Nombre: ")
+        self.apellido = input(" Apellido: ")
+        self.edad  = input("     Edad: ")
+        self.domicilio = input("Domicilio: ")
+        self.email  = input("   Correo: ")
+
 
 class Cliente(Persona):
     """ tiene los datos de persona, añade fecha de alta, fecha de baja (si existe) y sucursal.
@@ -77,6 +86,10 @@ class Cuenta(Cliente):
         self.nCuenta = obtenerIdCuenta(self.id_cliente)
         self.saldo = obtenerSaldo(self.nCuenta)
 
+    def cargarCuenta(self, ):
+        datos = obtenerCuenta(self.id_cliente)
+        self.nCuenta = datos[0]
+        self.saldo = datos[2]
 
     def agregarDinero(self, monto):
         self.saldo = obtenerSaldo(self.nCuenta) + monto
