@@ -18,10 +18,29 @@ def menu():
 
 
 while True:
+	#cada vez crea objeto colaClientes al que ira agregando datos
 	proximo = colaClientes()
+	#pide por pantalla el dni del cliente y lo guarda en el atributo dni de colaCliente
     proximo.dni = int(input('BIENVENIDO. \n INGRESE DNI'))
+	#busca el idpersona para el dni ingresado
     idpers = obtenerIdPersona(proximo.dni)
-	proximo.cliente = cargarCuenta()
+	proximo.id_cliente = obtenerIdCliente(idpers)
+	proximo.id_cuenta = obtenerDatoCuenta('idcuenta', proximo.id_cliente)
+	#crea un objeto cuenta
+	cuenta = Cuenta()
+	#y lo guarda en el atributo cliente de proximo
+	proximo.cliente = cuenta.cargarCuenta()
+
+	''''
+	class Cuenta():
+	self.dni = None
+	self.id_cliente = None
+	self.id_cuenta = None
+	self.cliente = None #contendra un objeto cuenta
+	self.operacion = None
+	self.monto = None
+	self.horaIngreso = time.asctime()
+	self.estado = 'En proceso''''
 
 
 	# Muestra el menu

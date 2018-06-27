@@ -129,9 +129,9 @@ class Cajero():
 class ColaClientes():
     def __init__(self):
         self.dni = None
-        self.idcliente = obtenerIdCliente(idpers)
-        self.idcuenta = obtenerIdCuenta(self.idcliente)
-        self.cliente = obtenerCuenta()
+        self.idcliente = None
+        self.idcuenta = None
+        self.cliente = None #contendra un objeto cuenta
         self.operacion = None
         self.monto = None
         self.horaIngreso = time.asctime()
