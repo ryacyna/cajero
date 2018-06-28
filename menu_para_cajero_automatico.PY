@@ -24,12 +24,12 @@ while True:
 
 	'''
 	class Cuenta():
-		self.dni = None
-		self.id_cliente = None
-		self.id_cuenta = None
-		self.cliente = None #contendra un objeto cuenta
-		self.operacion = None
-		self.monto = None
+		> self.dni = None
+		> self.id_cliente = None
+		> self.id_cuenta = None
+		> self.cliente = None #contendra un objeto cuenta
+		> self.operacion = None
+		> self.monto = None
 		self.horaIngreso = time.asctime()
 		self.estado = 'En proceso'''
 
@@ -37,19 +37,19 @@ while True:
 	# Muestra el menu y almacena la operacion requerida por el cliente en el atributo operaciones
 	proximo.operacion = cajero.menuAutomatico()
 
-	if opcionMenu<1 or opcionMenu>4:
+	if proximo.operacion<1 or proximo.operacion>4:
 		print ("Ingrese un numero del 1 al 4")
 
-	if opcionMenu==1:
+	if proximo.operacion==1:
 		print ("Has pulsado la opción 1 - DEPOSITOS")
-		montoDepositado = int(input("Inserta el monto que va a depositar >> $"))
+		proximo.monto = int(input("Inserta el monto que va a depositar >> $"))
 
-		if montoDepositado <= 0:
-			montoDepositado = int(input("Por favor, ingrese un monto mayor a $0>> "))
+		if proximo.monto <= 0:
+			proximo.monto = int(input("Por favor, ingrese un monto mayor a $0>> "))
 		else:
 			print ("Muchas gracias, en 24hs se efectuará el depósito")
 
-	elif opcionMenu==2:
+	elif proximo.operacion==2:
 		print ("Has pulsado la opción 2")
 		montoExtraccion = int(input("Inserta el monto de dinero que desea extraer>> "))
 		#if montoExtraccion>saldoCliente:
@@ -58,13 +58,15 @@ while True:
 		else:
 			print ("Retire su dinero por favor, muchas gracias")
 
-	elif opcionMenu==3:
+	elif proximo.operacion==3:
 		print ("Has pulsado la opción 3")
 		idPersona = input("Aquí puede ver la información de su cuenta >> ")
 		##Acá se haría una consulta a la base de datos para mostrar los datos del cliente, los movimientos de la cuenta y su saldo
 
-	elif opcionMenu==4:
+	elif proximo.operacion==4:
 		break
 
 	else:
 		input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")
+
+	#cajero.atenderCliente()
