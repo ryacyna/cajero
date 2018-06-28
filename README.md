@@ -18,6 +18,6 @@ basededatos.py  :  funciones sobre el sqlite
 
 Cajero.db  : base de datos sqlite con datos de Personas, Clientes, Cuentas, operaciones.
 
-
+..
 
 
