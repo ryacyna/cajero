@@ -22,17 +22,6 @@ while True:
 	#y lo guarda en el atributo cliente de proximo
 	proximo.cliente = cuenta.cargarDatos(proximo.dni)
 
-	'''
-	class Cuenta():
-		> self.dni = None
-		> self.id_cliente = None
-		> self.id_cuenta = None
-		> self.cliente = None #contendra un objeto cuenta
-		> self.operacion = None
-		> self.monto = None
-		self.horaIngreso = time.asctime()
-		self.estado = 'En proceso'''
-
 
 	# Muestra el menu y almacena la operacion requerida por el cliente en el atributo operaciones
 	proximo.operacion = cajero.menuAutomatico()
@@ -48,6 +37,11 @@ while True:
 			proximo.monto = int(input("Por favor, ingrese un monto mayor a $0>> "))
 		else:
 			print ("Muchas gracias, en 24hs se efectuará el depósito")
+
+		cajero.atenderCliente()
+
+		if input('Desea realizar otra operacion? S:si N:no\n >> ').upper() == 'S':
+			proximo.
 
 	elif proximo.operacion==2:
 		print ("Has pulsado la opción 2")
