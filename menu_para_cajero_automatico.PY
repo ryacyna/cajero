@@ -11,12 +11,15 @@ cajero = Cajero()
 while True:
 	#cada vez crea objeto colaClientes al que ira agregando datos
 	proximo = ColaClientes()
+	
 	#pide por pantalla el dni del cliente y lo guarda en el atributo dni de colaCliente
 	proximo.dni = int(input('BIENVENIDO. \n\nINGRESE DNI\n'))
+
 	#busca el idpersona para el dni ingresado
 	idpers = obtenerIdPersona(proximo.dni)
 	proximo.id_cliente = obtenerIdCliente(idpers)
 	proximo.id_cuenta = obtenerDatoCuenta('idcuenta', proximo.id_cliente)
+
 	#crea un objeto cuenta
 	cuenta = Cuenta()
 	#y lo guarda en el atributo cliente de proximo
