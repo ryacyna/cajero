@@ -17,7 +17,7 @@ class Persona():
         self.email = None
         self.id_persona = None
 
-    def cargarDatos(self):
+    def nuevaPersona(self):
         print('Alta Nueva Persona')
 
         self.dni = input("      DNI: ")
@@ -35,7 +35,8 @@ class Persona():
     def modificarDatos(self):
         pass
 
-    def cargarPersona(self, dni):
+    #obtiene todos los campos de un registro de personas dato un dni
+    def cargarDatos(self, dni):
         datos = obtenerPersona(dni)
         self.dni = dni
         self.nombre = datos[1]
@@ -44,6 +45,9 @@ class Persona():
         self.domicilio = [5]
         self.email  = datos[6]
         self.id_persona = datos[0]
+    #tabla personas (idpersona  0, nombre 1, apellido 2, edad 3, dni 4, domicilio 5, e_mail 6)
+
+
 
 class Cliente(Persona):
     """ tiene los datos de persona, añade fecha de alta, fecha de baja (si existe) y sucursal.
@@ -70,8 +74,14 @@ class Cliente(Persona):
         self.fechaBaja = time.asctime()
         bajaCliente(self.fechaBaja, self.id_cliente)
 
-    def cargarCliente(self):
-
+    #esta funcion heredada ahora incorpora cargar los datos del cliente dado un idPersona
+    def cargarDatos(self, dni):
+        super().cargarDatos(dni=dni)
+        datos = obtenerCliente(self.id_persona)
+        self.fechaAlta = datos[2]
+        self.sucursal = datos[4]
+        self.id_cliente = datos[0]
+        #tabla clientes (idcliente  0, idpersona 1, fec_alta 2, fec_baja 3, sucursal 4)
 
 
 class Cuenta(Cliente):
@@ -86,10 +96,14 @@ class Cuenta(Cliente):
         self.nCuenta = obtenerIdCuenta(self.id_cliente)
         self.saldo = obtenerSaldo(self.nCuenta)
 
-    def cargarCuenta(self, ):
+    #obtiene todos los datos de una cuenta dado un id_cliente
+    def cargarDatos(self, dni):
+        super().cargarDatos(dni=dni)
         datos = obtenerCuenta(self.id_cliente)
         self.nCuenta = datos[0]
         self.saldo = datos[2]
+        #tabla cuentas  (idcuenta  0, idcliente 1, saldo 2)
+
 
     def agregarDinero(self, monto):
         self.saldo = obtenerSaldo(self.nCuenta) + monto
@@ -124,9 +138,21 @@ class Cajero():
         siguiente = self.colaClientes.popleft()
         operaciones = {'Deposito': 1, 'Extracción': 2, 'Consulta': 3}
         if siguiente.operacion in operaciones:
+            pass
+
+    def menuAutomatico(self):
+    	print ("Seleccione la opción deseada")
+    	print ("\t1 - Depósito")
+    	print ("\t2 - Extracción")
+    	print ("\t3 - Consulta")
+    	print ("\t4 - Salir \n")
+    	opcionMenu = int(input('>> '))
+        #int(input("Selecciona una opción\n\t1 - Personas\n\t2 - Clientes\n\t3 - Cuentas\n\t4 - Movimientos\n\t9 - Salir\n\t"))
+    	return opcionMenu
 
 
 class ColaClientes():
+
     def __init__(self):
         self.dni = None
         self.idcliente = None

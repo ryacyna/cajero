@@ -11,7 +11,7 @@ while True:
         opcionPers = int(input("Selecciona una opción\n\t1 - Alta Nueva Persona\n\t2 - modificar Datos personales\n\t"))
         if opcionPers == 1:
             persona = Persona()
-            persona.cargarDatos()
+            persona.nuevaPersona()
             imprimiRegistro()
         elif opcionPers == 2:
             pass

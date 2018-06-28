@@ -1,65 +1,50 @@
-import os
 
-from baseDatos import *
+
+import os
 import time
+from baseDatos import *
 from clases import *
 
-
+#creo un objeto cajero
 cajero = Cajero()
-
-def menu():
-	print ("Seleccione la opción deseada")
-	print ("\t1 - Depósito")
-	print ("\t2 - Extracción")
-	print ("\t3 - Consulta")
-	print ("\t4 - Salir \n")
-	opcionMenu = int(input("Selecciona una opción\n\t1 - Personas\n\t2 - Clientes\n\t3 - Cuentas\n\t4 - Movimientos\n\t9 - Salir\n\t"))
-	return opcionMenu
-
 
 while True:
 	#cada vez crea objeto colaClientes al que ira agregando datos
-	proximo = colaClientes()
+	proximo = ColaClientes()
 	#pide por pantalla el dni del cliente y lo guarda en el atributo dni de colaCliente
-    proximo.dni = int(input('BIENVENIDO. \n INGRESE DNI'))
+	proximo.dni = int(input('BIENVENIDO. \n\nINGRESE DNI\n'))
 	#busca el idpersona para el dni ingresado
-    idpers = obtenerIdPersona(proximo.dni)
+	idpers = obtenerIdPersona(proximo.dni)
 	proximo.id_cliente = obtenerIdCliente(idpers)
 	proximo.id_cuenta = obtenerDatoCuenta('idcuenta', proximo.id_cliente)
 	#crea un objeto cuenta
 	cuenta = Cuenta()
 	#y lo guarda en el atributo cliente de proximo
-	proximo.cliente = cuenta.cargarCuenta()
+	proximo.cliente = cuenta.cargarDatos(proximo.dni)
 
-	''''
+	'''
 	class Cuenta():
-	self.dni = None
-	self.id_cliente = None
-	self.id_cuenta = None
-	self.cliente = None #contendra un objeto cuenta
-	self.operacion = None
-	self.monto = None
-	self.horaIngreso = time.asctime()
-	self.estado = 'En proceso''''
+		self.dni = None
+		self.id_cliente = None
+		self.id_cuenta = None
+		self.cliente = None #contendra un objeto cuenta
+		self.operacion = None
+		self.monto = None
+		self.horaIngreso = time.asctime()
+		self.estado = 'En proceso'''
 
 
-	# Muestra el menu
-	opcionMenu = menu()
+	# Muestra el menu y almacena la operacion requerida por el cliente en el atributo operaciones
+	proximo.operacion = cajero.menuAutomatico()
 
-	while opcionMenu<1 or opcionMenu>4:
+	if opcionMenu<1 or opcionMenu>4:
 		print ("Ingrese un numero del 1 al 4")
-		opcionMenu = menu()
 
 	if opcionMenu==1:
-		print ("Has pulsado la opción 1")
-		montoDepositado = int(input("Inser")
-	print ("\t2 - Extracción")
-	print ("\t3 - Consulta")
-	print ("\t4 - Salir \n")
-	opcionMenu = int(input("Selecciona una opción\n\t1 - Personas\n\t2 - Clientes\n\t3 - Cuentas\n\t4 - Movimientos\n\t9 - Salir\n\t"))
-	return opcionMenu
-ta el monto que va a depositar >> "))
-		while montoDepositado <= 0:
+		print ("Has pulsado la opción 1 - DEPOSITOS")
+		montoDepositado = int(input("Inserta el monto que va a depositar >> $"))
+
+		if montoDepositado <= 0:
 			montoDepositado = int(input("Por favor, ingrese un monto mayor a $0>> "))
 		else:
 			print ("Muchas gracias, en 24hs se efectuará el depósito")

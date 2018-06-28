@@ -29,8 +29,8 @@ def crearPersona(nom, ape, ed, dni, dom, co):
 def obtenerIdPersona(dni):
     con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
-    for i in cur.execute("SELECT idpersona from personas where dni=?", (dni,)):
-        id_persona = i[0]
+    cur.execute("SELECT idpersona from personas where dni=?", (dni,))
+    id_persona = cur.fetchone()[0]
     con.close()
     return id_persona
 
@@ -63,8 +63,8 @@ def crearCliente(idper, alta, suc):
 def obtenerIdCliente(id_persona):
     con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
-    for i in cur.execute("SELECT idcliente from clientes where idpersona=?", (id_persona,)):
-        id_cliente = i[0]
+    cur.execute("SELECT idcliente from clientes where idpersona=?", (id_persona,))
+    id_cliente = cur.fetchone()[0]
     con.close()
     return id_cliente
 
@@ -77,6 +77,12 @@ def obtenerCliente(persona):
     con.close()
     return cliente
 
+def imprimirClientes():
+    con = sqlite3.connect('Cajero.db')
+    cur = con.cursor()
+    for registro in cur.execute("SELECT * from clientes"): #=?", (tabla,)):
+        print (registro)
+    con.close()
 
 #agrega la fecha de baja en el campo baja dado un idcliente
 def bajaCliente(baja, cliente):
