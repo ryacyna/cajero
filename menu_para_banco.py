@@ -1,19 +1,13 @@
 import os
-from clientes import *
-from cuentas import *
-from Persona import *
+
 
 def menu():
-    """
+
     Función que limpia la pantalla y muestra nuevamente el menu
-    """
-    os.system('clear') 
-    print ("Selecciona una opción")
-    print ("\t1 - Personas")
-    print ("\t2 - Clientes")
-    print ("\t3 - Cuentas")
-    print ("\t4 - Movimientos")   
-    print ("\t9 - salir")
+
+    os.system('clear')
+    opcionMenu = int(input("Selecciona una opción\n\t1 - Personas\n\t2 - Clientes\n\t3 - Cuentas\n\t4 - Movimientos\n\t9 - Salir\n\t"))
+    return opcionMenu
 
 
 while True:
@@ -31,8 +25,8 @@ while True:
         alta_cta()
     elif opcionMenu==4:
         alta_oper()
-         
-         
+
+
     elif opcionMenu==9:
         break
     else:
