@@ -1,23 +1,49 @@
-# Colaboratory del Proyecto Cajero
-
-https://colab.research.google.com/drive/1D1wxk5xb7oTcbPcMcAfWfeACBtRq4xcS#scrollTo=p98_uF-m9Y1J
-
-# Gráfico UML del Proyecto Cajero
-
-https://www.draw.io/?state=%7B%22ids%22:%5B%221Xh_4BwM4Vcw044UWvfzY3efyxc9cj4z9%22%5D,%22action%22:%22open%22,%22userId%22:%22{userId}%22%7D#G1Xh_4BwM4Vcw044UWvfzY3efyxc9cj4z9
+Este es un programa pensado para un banco, sirve para administrar personas, clientes, cuentas y las operaciones correspondientes a cada entidad mencionada.
 
 
-menu_para_banco.py : Opciones para crear Clientes y Cuentas.
+menu_para_banco.py: 
+
+Opciones para crear Clientes y Cuentas.
 
 
-menu_para_cajero_automatico.py  : Opciones para un cliente existente del banco.
+menu_para_cajero_automatico.py: 
 
-clases.py : Clases utilizadas en los modulos.
+Este archivo sirve para que el cliente ingrese al sistema luego de colocar su DNI, posteriormete se detallan las opciones:
+Depositar dinero de la Cuenta
+Extraer dinero de la Cuentas
+Hacer una consulta sobre la cuenta
+Salir del sistema
 
-basededatos.py  :  funciones sobre el sqlite
+clases.py : 
 
-Cajero.db  : base de datos sqlite con datos de Personas, Clientes, Cuentas, operaciones.
+Acá se definen las Clases utilizadas en los módulos.
 
+Persona
+Cliente
+Cuenta
+Cajero
+Cola de cliente
+
+basededatos.py:
+
+Se definen las funciones que trabajan con sqlite:
+
+crearPersona
+obtenerIdPersona
+imprimirPersonas
+obtenerPersona
+crearCliente
+obtenerIdCliente
+obtenerCliente
+imprimir
+bajaCliente
+crearCuenta
+obtenerDatoCuenta
+obtenerCuenta
+obtenerSaldo
+actualizarSaldo
+
+Cajero.db: 
+
+Base de datos sqlite con datos de Personas, Clientes, Cuentas y Operaciones.
 ..
-
-
