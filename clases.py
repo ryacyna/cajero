@@ -62,12 +62,14 @@ class Cliente(Persona):
     def altaCliente(self):
 
         self.fechaAlta = time.asctime()
+        self.dni = int(input('INGRESE DNI\n'))
         self.sucursal  = input(" Sucursal: ")
-
+    	#busca el idpersona para el dni ingresado
+        self.id_persona = obtenerIdPersona(self.dni)
         sn  = input('Confirma los datos (S ócon N) ? \n').upper()
         if sn == 'S':
             crearCliente(self.id_persona, self.fechaAlta, self.sucursal)
-            self.id_cliente = obtenerDatoCuenta(idcliente, self.id_persona)
+            #self.id_cliente = obtenerDatoCuenta('idcliente', self.id_persona)
 
 
     def bajaCliente(self):
@@ -92,8 +94,11 @@ class Cuenta(Cliente):
         self.saldo = None
 
     def altaCuenta(self):
+        self.dni = int(input('INGRESE DNI\n'))
+        self.id_persona = obtenerIdPersona(self.dni)
+        self.id_cliente = obtenerIdCliente(self.id_persona)
         crearCuenta(self.id_cliente)
-        self.nCuenta = obtenerIdCuenta(self.id_cliente)
+        self.nCuenta = obtenerDatoCuenta('idcuenta', self.id_cliente)
         self.saldo = obtenerSaldo(self.nCuenta)
 
     #obtiene todos los datos de una cuenta dado un id_cliente

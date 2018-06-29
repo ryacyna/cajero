@@ -11,7 +11,7 @@ cajero = Cajero()
 while True:
 	#cada vez crea objeto colaClientes al que ira agregando datos
 	proximo = ColaClientes()
-	
+
 	#pide por pantalla el dni del cliente y lo guarda en el atributo dni de colaCliente
 	proximo.dni = int(input('BIENVENIDO. \n\nINGRESE DNI\n'))
 
@@ -44,7 +44,7 @@ while True:
 		cajero.atenderCliente()
 
 		if input('Desea realizar otra operacion? S:si N:no\n >> ').upper() == 'S':
-			proximo.
+			pass
 
 	elif proximo.operacion==2:
 		print ("Has pulsado la opción 2")

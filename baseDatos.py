@@ -34,14 +34,6 @@ def obtenerIdPersona(dni):
     con.close()
     return id_persona
 
-#imprime todos los registros de la tabla personas
-def imprimirPersonas():
-    con = sqlite3.connect('Cajero.db')
-    cur = con.cursor()
-    for registro in cur.execute("SELECT * from personas"): #=?", (tabla,)):
-        print (registro)
-    con.close()
-
 #devuelve una tupla con un registro completo dado un dni
 def obtenerPersona(dni):
     con = sqlite3.connect('Cajero.db')
@@ -77,13 +69,6 @@ def obtenerCliente(persona):
     con.close()
     return cliente
 
-def imprimirClientes():
-    con = sqlite3.connect('Cajero.db')
-    cur = con.cursor()
-    for registro in cur.execute("SELECT * from clientes"): #=?", (tabla,)):
-        print (registro)
-    con.close()
-
 #agrega la fecha de baja en el campo baja dado un idcliente
 def bajaCliente(baja, cliente):
     con = sqlite3.connect('Cajero.db')
@@ -102,10 +87,10 @@ def crearCuenta(cliente):
     con.close()
 
 #devuelve el contendido dado un campo (string) y un idcliente
-def obtenerDatoCuenta(campo, cliente):
+def obtenerDato(campo, tabla, campo_ref, valor_ref):
     con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
-    cur.execute("SELECT ? from cuentas where idcliente=?", (campo, cliente))
+    cur.execute("SELECT {} from {} where {}={}".format(campo, tabla, campo_ref, valor_ref))
     dato = cur.fetchone()[0]
     con.close()
     return dato
@@ -121,12 +106,15 @@ def obtenerCuenta(cliente):
 
 #devuelve el saldo dado un idcuenta
 def obtenerSaldo(cuenta):
-    con = sqlite3.connect('Cajero.db')
+    return obtenerDato('saldo', 'cuentas', 'idcuenta', cuenta)
+
+    '''con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
-    for i in cur.execute("SELECT saldo from cuentas where idcuenta=?", (cuenta,)):
-        saldo = i[0]
+    cur.execute("SELECT saldo from cuentas where idcuenta=?", (cuenta,))
+    saldo = cur.fetchone()
     con.close()
-    return saldo
+    return saldo'''
+
 
 #actualiza el saldo dado un idcuenta
 def actualizarSaldo(cuenta, monto):
@@ -134,4 +122,12 @@ def actualizarSaldo(cuenta, monto):
     cur = con.cursor()
     cur.execute("UPDATE cuentas set saldo=? where idcuenta=?", (monto, cuenta))
     con.commit()
+    con.close()
+
+#imprime todos los registros de la tabla
+def listarTabla(tabla):
+    con = sqlite3.connect('Cajero.db')
+    cur = con.cursor()
+    for registro in cur.execute("SELECT * from {}".format(tabla)):
+        print (registro)
     con.close()
