@@ -36,13 +36,19 @@ while True:
         if opcion == 1 :
             cuenta = Cuenta()
             cuenta.altaCuenta()
-            
+        elif opcion == 2:
+            input('Sistema en construccion. \nPulse una tecla')
+
+        else:
+            input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")
+
 
     elif opcionMenu==4:
-        alta_oper()
+        input('Sistema en construccion. \nPulse una tecla')
 
 
     elif opcionMenu==9:
+        input('Saliendo del sistema. \nPulse una tecla')
         break
     else:
         input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")

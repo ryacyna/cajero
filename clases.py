@@ -98,7 +98,8 @@ class Cuenta(Cliente):
         self.id_persona = obtenerIdPersona(self.dni)
         self.id_cliente = obtenerIdCliente(self.id_persona)
         crearCuenta(self.id_cliente)
-        self.nCuenta = obtenerDatoCuenta('idcuenta', self.id_cliente)
+        self.nCuenta = obtenerDato('idcuenta', 'cuentas', 'idcliente', self.id_cliente)
+        #obtenerDato(campo, tabla, campo_ref, valor_ref):
         self.saldo = obtenerSaldo(self.nCuenta)
 
     #obtiene todos los datos de una cuenta dado un id_cliente
