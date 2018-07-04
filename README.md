@@ -1,7 +1,7 @@
 Este es un programa pensado para un banco, sirve para administrar personas, clientes, cuentas y las operaciones correspondientes a cada entidad mencionada.
 
 
-menu_para_banco.py: 
+cajeroCentral.py: 
 
 Opciones para crear Clientes y Cuentas.
 
