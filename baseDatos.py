@@ -108,12 +108,22 @@ def obtenerCuenta(cliente):
 def obtenerSaldo(cuenta):
     return obtenerDato('saldo', 'cuentas', 'idcuenta', cuenta)
 
+#imprime todos los registros de la tabla
+def listarTabla(tabla):
+    con = sqlite3.connect('Cajero.db')
+    cur = con.cursor()
+    for registro in cur.execute("SELECT * from {}".format(tabla)):
+        print (registro)
+    con.close()
+
+
+
     '''con = sqlite3.connect('Cajero.db')
     cur = con.cursor()
     cur.execute("SELECT saldo from cuentas where idcuenta=?", (cuenta,))
     saldo = cur.fetchone()
     con.close()
-    return saldo'''
+    return saldo
 
 
 #actualiza el saldo dado un idcuenta
@@ -122,12 +132,4 @@ def actualizarSaldo(cuenta, monto):
     cur = con.cursor()
     cur.execute("UPDATE cuentas set saldo=? where idcuenta=?", (monto, cuenta))
     con.commit()
-    con.close()
-
-#imprime todos los registros de la tabla
-def listarTabla(tabla):
-    con = sqlite3.connect('Cajero.db')
-    cur = con.cursor()
-    for registro in cur.execute("SELECT * from {}".format(tabla)):
-        print (registro)
-    con.close()
+    con.close()'''
