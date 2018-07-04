@@ -2,6 +2,7 @@
 
 import os
 import time
+from collections import deque
 from baseDatos import *
 from clases import *
 
@@ -18,21 +19,19 @@ while True:
 	#busca el idpersona para el dni ingresado
 	idpers = obtenerIdPersona(proximo.dni)
 	proximo.id_cliente = obtenerIdCliente(idpers)
-	proximo.id_cuenta = obtenerDatoCuenta('idcuenta', proximo.id_cliente)
-
+	proximo.id_cuenta = obtenerDato('idcuenta', 'cuentas', 'idcliente', proximo.id_cliente)
+    #obtenerDato(campo, tabla, campo_ref, valor_ref)
 	#crea un objeto cuenta
 	cuenta = Cuenta()
 	#y lo guarda en el atributo cliente de proximo
 	proximo.cliente = cuenta.cargarDatos(proximo.dni)
-
-
 	# Muestra el menu y almacena la operacion requerida por el cliente en el atributo operaciones
 	proximo.operacion = cajero.menuAutomatico()
 
 	if proximo.operacion<1 or proximo.operacion>4:
 		print ("Ingrese un numero del 1 al 4")
 
-	if proximo.operacion==1:
+	elif proximo.operacion==1:
 		print ("Has pulsado la opción 1 - DEPOSITOS")
 		proximo.monto = int(input("Inserta el monto que va a depositar >> $"))
 
@@ -41,8 +40,6 @@ while True:
 		else:
 			print ("Muchas gracias, en 24hs se efectuará el depósito")
 
-		cajero.atenderCliente()
-
 		if input('Desea realizar otra operacion? S:si N:no\n >> ').upper() == 'S':
 			pass
 
@@ -50,7 +47,7 @@ while True:
 		print ("Has pulsado la opción 2")
 		montoExtraccion = int(input("Inserta el monto de dinero que desea extraer>> "))
 		#if montoExtraccion>saldoCliente:
-		while montoExtraccion <= 0:
+		if montoExtraccion <= 0:
 			montoExtraccion = int(input("Por favor, ingrese un monto mayor a $0>> "))
 		else:
 			print ("Retire su dinero por favor, muchas gracias")
@@ -65,5 +62,6 @@ while True:
 
 	else:
 		input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")
-
-	#cajero.atenderCliente()
+    #cajero.colaClientes.append(proximo)
+    #cajero.atenderCliente()
+    #input('Su solicitud sera procesada. \nPulse para continuar')
