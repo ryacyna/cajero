@@ -10,7 +10,7 @@ def menu():
     return opcionMenu
 
 
-while True:
+''''while True:
     # Muestra el menu
     menu()
 
@@ -30,4 +30,4 @@ while True:
     elif opcionMenu==9:
         break
     else:
-        input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")
+        input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")'''
